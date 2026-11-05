@@ -967,11 +967,13 @@ a:hover {
 
   .nav-container {
     padding: 0 12px;
+    gap: 8px;
   }
 
   .brand {
     font-size: 1rem;
     gap: 8px;
+    margin-right: 2px;
   }
 
   .brand-icon {
@@ -985,11 +987,12 @@ a:hover {
   }
 
   .nav-links {
-    gap: 3px;
+    gap: 4px;
+    margin-left: 2px;
   }
 
   .nav-link {
-    padding: 6px 9px;
+    padding: 6px 10px;
     font-size: 0.82rem;
     gap: 5px;
   }
