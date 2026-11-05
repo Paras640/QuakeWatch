@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}QuakeWatch India - Real-Time Seismic Analytics{% endblock %}</title>
+
+  <!-- Fluent System Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Leaflet Interactive Maps CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- QuakeWatch Fluent 2 Design System Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fluent.css') }}">
+
+  <!-- Theme Script (Executed early to prevent light/dark flash) -->
+  <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+  <!-- Fluent Acrylic Top Navigation Bar -->
+  <header class="fluent-navbar">
+    <div class="nav-container">
+      <a href="{{ url_for('home') }}" class="brand">
+        <div class="brand-icon">
+          <!-- Seismic Wave SVG -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12h4l3-7 4 14 3-7h6"></path>
+          </svg>
+        </div>
+        <span>QuakeWatch</span>
+        <span class="brand-badge">Live India</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-links">
+          <li>
+            <a href="{{ url_for('home') }}" class="nav-link {% if active_page == 'home' %}active{% endif %}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              <span class="nav-text">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('tracker') }}" class="nav-link {% if active_page == 'tracker' %}active{% endif %}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span class="nav-text">Tracker</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('about') }}" class="nav-link {% if active_page == 'about' %}active{% endif %}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span class="nav-text">About</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Controls: Theme Toggle & Quick CTA -->
+      <div class="nav-actions">
+        <!-- Dark / Light Mode Switcher Button -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg class="icon-sun" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        {% if active_page != 'tracker' %}
+        <a href="{{ url_for('tracker') }}" class="fluent-btn fluent-btn-primary nav-cta-btn" style="padding: 7px 14px; font-size: 0.85rem;">
+          Open Tracker
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main class="main-wrapper">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Fluent Footer -->
+  <footer class="fluent-footer">
+    <div class="footer-container">
+      <div>
+        <strong style="color:var(--text-primary);">QuakeWatch India</strong> &mdash; Real-Time Seismic Analytics & Early Information
+        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">
+          Live Telemetry &bull; Powered by USGS Earthquake Hazards Program
+        </div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('tracker') }}">Live Tracker</a></li>
+        <li><a href="{{ url_for('about') }}">About &amp; Architecture</a></li>
+        <li><a href="https://ndma.gov.in" target="_blank" rel="noopener">NDMA India (1078)</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Leaflet Interactive Maps JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

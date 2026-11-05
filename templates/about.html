@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block title %}About &amp; Architecture &bull; QuakeWatch India{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="animate-fade-up" style="margin-bottom: 32px;">
+  <div class="hero-pill" style="margin-bottom: 12px;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="16" x2="12" y2="12"></line>
+      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+    </svg>
+    System Architecture &amp; Documentation
+  </div>
+  <h1 style="font-size:2.2rem; font-weight:800; letter-spacing:-0.03em; color:var(--text-primary); margin-bottom:8px;">
+    About QuakeWatch India
+  </h1>
+  <p style="font-size:1.05rem; color:var(--text-secondary); max-width:800px; line-height:1.6;">
+    An advanced real-time seismic monitoring and data analytics platform. 
+    It bridges live global seismic sensor feeds with local geospatial analysis and modern Fluent UI visualization.
+  </p>
+</div>
+
+<!-- Architecture & Pipeline Flowchart Card -->
+<div class="fluent-card animate-fade-up delay-100" style="margin-bottom: 32px;">
+  <h2 class="fluent-card-title" style="margin-bottom: 16px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+      <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+      <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+      <line x1="6" y1="6" x2="6.01" y2="6"></line>
+      <line x1="6" y1="18" x2="6.01" y2="18"></line>
+    </svg>
+    End-to-End System Architecture
+  </h2>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-top:20px;">
+    <div class="zone-item">
+      <div style="font-size:0.8rem; font-weight:700; color:var(--accent); text-transform:uppercase; margin-bottom:6px;">Stage 1 &bull; Ingestion</div>
+      <h3 style="font-size:1rem; font-weight:600; margin-bottom:6px;">USGS FDSN API</h3>
+      <p style="font-size:0.84rem; color:var(--text-secondary);">
+        Queries live GeoJSON earthquakes feed with dynamic latitude, longitude, radial distance, and time filters.
+      </p>
+    </div>
+
+    <div class="zone-item">
+      <div style="font-size:0.8rem; font-weight:700; color:var(--accent); text-transform:uppercase; margin-bottom:6px;">Stage 2 &bull; Backend</div>
+      <h3 style="font-size:1rem; font-weight:600; margin-bottom:6px;">Flask REST Microservice</h3>
+      <p style="font-size:0.84rem; color:var(--text-secondary);">
+        Exposes analytical endpoints with caching, resilient offline fallback, and modular Jinja2 template rendering.
+      </p>
+    </div>
+
+    <div class="zone-item">
+      <div style="font-size:0.8rem; font-weight:700; color:var(--accent); text-transform:uppercase; margin-bottom:6px;">Stage 3 &bull; Presentation</div>
+      <h3 style="font-size:1rem; font-weight:600; margin-bottom:6px;">Fluent 2 &amp; Leaflet</h3>
+      <p style="font-size:0.84rem; color:var(--text-secondary);">
+        Delivers dark/light mode mica glassmorphism, responsive data tables, live maps, and instant CSV downloads.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Technology Stack Grid -->
+<div class="fluent-card animate-fade-up delay-200" style="margin-bottom: 32px;">
+  <h2 class="fluent-card-title" style="margin-bottom: 18px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+      <polyline points="16 18 22 12 16 6"></polyline>
+      <polyline points="8 6 2 12 8 18"></polyline>
+    </svg>
+    Core Technology Stack
+  </h2>
+
+  <div style="display:flex; flex-wrap:wrap; gap:10px;">
+    <div class="tech-badge"><strong>Python 3.10+</strong> &mdash; Core Programming Language</div>
+    <div class="tech-badge"><strong>Flask</strong> &mdash; Web Application Framework</div>
+    <div class="tech-badge"><strong>Requests</strong> &mdash; HTTP Client for REST APIs</div>
+    <div class="tech-badge"><strong>Leaflet.js</strong> &mdash; Interactive Geospatial Mapping</div>
+    <div class="tech-badge"><strong>CartoDB</strong> &mdash; Voyager &amp; Dark Matter Map Tiles</div>
+    <div class="tech-badge"><strong>Microsoft Fluent 2</strong> &mdash; Modern Windows 11 UI Design</div>
+    <div class="tech-badge"><strong>CSS Variables</strong> &mdash; Zero-Flash Adaptive Dark Mode</div>
+  </div>
+</div>
+
+<!-- India Tectonics & Seismic Zones -->
+<div class="fluent-card animate-fade-up delay-300" id="zones" style="margin-bottom: 32px;">
+  <h2 class="fluent-card-title" style="margin-bottom: 12px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="2" y1="12" x2="22" y2="12"></line>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+    </svg>
+    Tectonic Setting of India
+  </h2>
+  <p style="font-size:0.92rem; color:var(--text-secondary); line-height:1.6; margin-bottom:18px;">
+    The Indian tectonic plate is driving continuously northward into the Eurasian continental plate at a rate of approximately <strong>4 to 5 cm per year</strong>. 
+    This intense tectonic collision has formed the Himalayas and makes the northern, north-eastern, and western boundaries of India some of the most seismically active regions on Earth.
+  </p>
+
+  <div class="table-responsive">
+    <table class="fluent-table">
+      <thead>
+        <tr>
+          <th>Seismic Zone</th>
+          <th>Intensity Level (MSK)</th>
+          <th>Zone Factor (Z)</th>
+          <th>Coverage &amp; Vulnerable Regions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="mag-badge mag-severe">Zone V</span></td>
+          <td>IX and above (Very High)</td>
+          <td>0.36</td>
+          <td>Entire North-East (Assam, Meghalaya, etc.), parts of J&amp;K, Himachal Pradesh, Uttarakhand, Rann of Kutch (Gujarat), Andaman &amp; Nicobar.</td>
+        </tr>
+        <tr>
+          <td><span class="mag-badge mag-high">Zone IV</span></td>
+          <td>VIII (High)</td>
+          <td>0.24</td>
+          <td>Remaining Himalayan foothills, Delhi NCR, Chandigarh, Sikkim, northern parts of Uttar Pradesh, Bihar, and West Bengal.</td>
+        </tr>
+        <tr>
+          <td><span class="mag-badge mag-med">Zone III</span></td>
+          <td>VII (Moderate)</td>
+          <td>0.16</td>
+          <td>Goa, Kerala, Gujarat, coastal Maharashtra (including Mumbai), parts of Karnataka, Tamil Nadu, and West Bengal.</td>
+        </tr>
+        <tr>
+          <td><span class="mag-badge mag-low">Zone II</span></td>
+          <td>VI or less (Low)</td>
+          <td>0.10</td>
+          <td>Parts of central and southern peninsular India (Bengaluru, Hyderabad, Raipur, etc.), historically deemed stable.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Safety Checklist & Emergency Contacts -->
+<div class="fluent-card animate-fade-up delay-400" id="safety">
+  <h2 class="fluent-card-title" style="margin-bottom: 14px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+    </svg>
+    Earthquake Safety &amp; Emergency Helplines
+  </h2>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-top:16px;">
+    <div class="zone-item">
+      <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-primary); margin-bottom:6px;">1. During an Earthquake</h3>
+      <ul style="font-size:0.85rem; color:var(--text-secondary); padding-left:18px; line-height:1.6;">
+        <li><strong>DROP</strong> to the floor before the shaking knocks you down.</li>
+        <li>Take <strong>COVER</strong> under a sturdy desk or table.</li>
+        <li><strong>HOLD ON</strong> until the ground stops shaking.</li>
+        <li>Stay away from glass windows, exterior walls, and overhead lighting.</li>
+      </ul>
+    </div>
+
+    <div class="zone-item">
+      <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-primary); margin-bottom:6px;">2. After the Shaking Stops</h3>
+      <ul style="font-size:0.85rem; color:var(--text-secondary); padding-left:18px; line-height:1.6;">
+        <li>Expect aftershocks which may trigger further collapse.</li>
+        <li>Evacuate calmly using staircases &mdash; <strong>never use elevators</strong>.</li>
+        <li>Check for gas leaks and turn off the main gas/electrical switch if safe.</li>
+        <li>Move to open areas clear of power lines and damaged structures.</li>
+      </ul>
+    </div>
+
+    <div class="zone-item">
+      <h3 style="font-size:0.95rem; font-weight:700; color:var(--text-primary); margin-bottom:6px;">3. Emergency Helplines (India)</h3>
+      <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.7;">
+        <div><strong>National Disaster (NDMA):</strong> <span style="color:var(--accent); font-weight:700;">1078</span></div>
+        <div><strong>National Emergency Number:</strong> <span style="color:var(--accent); font-weight:700;">112</span></div>
+        <div><strong>Fire Services:</strong> 101 &bull; <strong>Ambulance:</strong> 102 / 108</div>
+        <div><strong>Disaster Management Control:</strong> 011-26701728</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
